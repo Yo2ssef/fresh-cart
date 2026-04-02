@@ -2,15 +2,14 @@ import { getToken } from 'next-auth/jwt'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
     const token = await getToken({
         req,
         secret: process.env.NEXTAUTH_SECRET
     })
-    
-    const { pathname } = req.nextUrl
-    
-    const isAuthPage = pathname.startsWith('/login') || pathname.startsWith('/register')
+
+    const pathName = req.nextUrl.pathname
+    const isAuthPage: boolean = pathName === '/login' || pathName === '/register'
 
     if (isAuthPage) {
         if (token) {
@@ -28,12 +27,12 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
     matcher: [
-        '/brands', 
-        '/cart/:path*', 
-        '/categories', 
-        '/shop', 
-        '/wishlist', 
-        '/login', 
+        '/brands',
+        '/cart/:path*',
+        '/categories',
+        '/shop',
+        '/wishlist',
+        '/login',
         '/register'
     ]
 }
