@@ -7,8 +7,10 @@ export async function middleware(req: NextRequest) {
         req,
         secret: process.env.NEXTAUTH_SECRET
     })
-    const pathName = req.nextUrl.pathname
-    const isAuthPage: boolean = pathName === '/login' || pathName === '/register'
+    
+    const { pathname } = req.nextUrl
+    
+    const isAuthPage = pathname.startsWith('/login') || pathname.startsWith('/register')
 
     if (isAuthPage) {
         if (token) {
@@ -18,12 +20,20 @@ export async function middleware(req: NextRequest) {
     }
 
     if (!token) {
-        const loginUrl = new URL("/login", req.url)
-        return NextResponse.redirect(loginUrl)
+        return NextResponse.redirect(new URL("/login", req.url))
     }
+
     return NextResponse.next()
 }
 
 export const config = {
-    matcher: ['/brands', '/cart', '/cart/checkout', '/categories', '/shop', '/wishlist', '/login', '/register']
+    matcher: [
+        '/brands', 
+        '/cart/:path*', 
+        '/categories', 
+        '/shop', 
+        '/wishlist', 
+        '/login', 
+        '/register'
+    ]
 }
