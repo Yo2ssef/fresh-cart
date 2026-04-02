@@ -3,6 +3,7 @@
 import { getUseToken } from "@/app/MyUtils"
 import { revalidatePath } from "next/cache";
 import { ShippingAddressType } from "./FormOrder.interface";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
 export async function handleCashOrder(shippingAddress: ShippingAddressType, idCard: string) {
     try {
@@ -27,7 +28,7 @@ export async function handleCashOrder(shippingAddress: ShippingAddressType, idCa
 }
 export async function handleOnlineOrder(shippingAddress: ShippingAddressType, idCard: string) {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API}api/v1/orders/checkout-session/${idCard}?url=http://localhost:3000`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API}api/v1/orders/checkout-session/${idCard}?url=${siteUrl}`, {
             method: "POST",
             headers: {
                 token: (await getUseToken() as string),
