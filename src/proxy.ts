@@ -2,23 +2,26 @@ import { getToken } from 'next-auth/jwt'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-
-export async function proxy(req: NextRequest) {
-    const token = await getToken({ req })
+export async function middleware(req: NextRequest) {
+    const token = await getToken({
+        req,
+        secret: process.env.NEXTAUTH_SECRET
+    })
     const pathName = req.nextUrl.pathname
-    const isAuth: boolean = pathName === '/login' || pathName === '/register'
+    const isAuthPage: boolean = pathName === '/login' || pathName === '/register'
 
-    if (isAuth) {
+    if (isAuthPage) {
         if (token) {
             return NextResponse.redirect(new URL("/", req.url))
         }
         return NextResponse.next()
     }
 
-    if (token) {
-        return NextResponse.next()
+    if (!token) {
+        const loginUrl = new URL("/login", req.url)
+        return NextResponse.redirect(loginUrl)
     }
-    return NextResponse.redirect(new URL("/login", req.url))
+    return NextResponse.next()
 }
 
 export const config = {
