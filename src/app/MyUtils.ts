@@ -1,13 +1,7 @@
-import { decode } from "next-auth/jwt";
-import { cookies } from "next/headers";
+import { nextAuthOptions } from "@/lib/configs/next-auth-config";
+import { getServerSession } from "next-auth";
 
 export async function getUseToken() {
-    const cookie = await cookies()
-
-    const sessionToken = cookie.get('next-auth.session-token')?.value
-
-    const token = await decode({ token: sessionToken, secret: process.env.NEXTAUTH_SECRET || "" })
-
-    return token?.tokenUser
-
+    const session = await getServerSession(nextAuthOptions);
+    return session?.user?.tokenUser || null;
 }
