@@ -242,6 +242,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="flex container mx-auto flex-col px-6 lg:px-8 md:flex-row items-center justify-between gap-4 text-slate-500">
           <p>© 2026 FreshCart. All rights reserved.</p>
+          <span className="text-lg">{`<BuiltWithCode by="Youssef" />`}</span>
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2 hover:text-slate-300 transition-colors cursor-pointer">
               <CreditCard className="w-4 h-4" /> Visa

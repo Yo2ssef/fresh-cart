@@ -1,18 +1,40 @@
-export const dynamic = 'force-dynamic';
+import type { Metadata } from "next";
 import { getProductCard } from "@/components/CardProudct/AddToCard/AddToCard.Action";
-import {
-  ReceiptText,
-  ArrowLeft,
-} from "lucide-react";
+import { ReceiptText, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import FormCashOrder from "./FormCashOrder"
+import FormCashOrder from "./FormCashOrder";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Checkout",
+  description:
+    "Review your items and complete your purchase securely at Fresh Cart.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    title: "Checkout | Fresh Cart",
+    description: "Complete your order and get your fresh products delivered.",
+    url: "https://freshcart-youssef.vercel.app/cart/checkout",
+    images: [
+      {
+        url: "/image/home-slider.png",
+        width: 1200,
+        height: 630,
+        alt: "Checkout",
+      },
+    ],
+  },
+};
 
 export default async function page() {
   const data = await getProductCard();
+
   return (
     <section className="container mx-auto px-4 lg:px-8">
       <section className="flex flex-col gap-6 py-8">
-        {/* Breadcrumb */}
         <div className="text-sm text-gray-500 flex items-center gap-2">
           <Link href="/" className="hover:text-gray-900 transition-colors">
             Home
@@ -25,7 +47,6 @@ export default async function page() {
           <span className="text-gray-900 font-medium">Checkout</span>
         </div>
 
-        {/* Header section */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex items-center gap-4">
             <div className="bg-green-600 rounded-xl p-3 flex items-center justify-center shrink-0 shadow-sm">

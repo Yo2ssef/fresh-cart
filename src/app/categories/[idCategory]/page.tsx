@@ -1,9 +1,40 @@
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getOneCategories } from "../categories.services";
 import Image from "next/image";
 
-export default async function page({ params }: { params: Promise<{ idCategory: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ idCategory: string }>;
+}): Promise<Metadata> {
+  const { idCategory } = await params;
+  const { name, image } = await getOneCategories(idCategory);
+
+  return {
+    title: name,
+    description: `Explore the best selection of ${name} at Fresh Cart. High quality and fresh products delivered to you.`,
+    openGraph: {
+      title: `${name} | Fresh Cart`,
+      description: `Browse our wide range of ${name} and find the best deals.`,
+      url: `https://freshcart-youssef.vercel.app/categories/${idCategory}`,
+      images: [
+        {
+          url: image,
+          width: 800,
+          height: 600,
+          alt: name,
+        },
+      ],
+    },
+  };
+}
+
+export default async function page({
+  params,
+}: {
+  params: Promise<{ idCategory: string }>;
+}) {
   const { idCategory } = await params;
   const { name, image } = await getOneCategories(idCategory);
 

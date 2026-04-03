@@ -1,8 +1,36 @@
-export const dynamic = 'force-dynamic';
+import type { Metadata } from "next";
 import { PackageOpen } from "lucide-react";
 import Link from "next/link";
 import { getAllProducts } from "../mainPage.services";
 import CardProduct from "@/components/CardProudct/CardProudct";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Shop",
+  description:
+    "Browse our complete collection of fresh groceries and daily essentials. High-quality products with the best prices at Fresh Cart.",
+  keywords: [
+    "online grocery",
+    "fresh products",
+    "shop all",
+    "Fresh Cart inventory",
+  ],
+  openGraph: {
+    title: "Full Product Catalog | Fresh Cart",
+    description:
+      "Explore our wide range of products and find everything you need in one place.",
+    url: "https://freshcart-youssef.vercel.app/shop",
+    images: [
+      {
+        url: "/image/home-slider.png",
+        width: 1200,
+        height: 630,
+        alt: "Fresh Cart Products",
+      },
+    ],
+  },
+};
 
 export default async function page() {
   const allProducts = await getAllProducts();

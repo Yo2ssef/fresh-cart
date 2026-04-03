@@ -3,7 +3,28 @@ import Link from "next/link";
 import { Tag, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Brand } from "../mainPage.interface";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Official Brands",
+  description: "Shop from our exclusive collection of top global brands. Find your favorite products from trusted manufacturers at Fresh Cart.",
+  
+  openGraph: {
+    title: "Brands | Fresh Cart",
+    description: "Discover all the premium brands available at Fresh Cart. Quality products from names you trust.",
+    url: "https://freshcart-youssef.vercel.app/brands",
+    images: [
+      {
+        url: "/image/home-slider.png", 
+        width: 1200,
+        height: 630,
+        alt: "Fresh Cart Brands",
+      },
+    ],
+  },
+
+  keywords: ["official brands", "premium brands", "shop by brand", "Fresh Cart partners"],
+};
 export default async function page() {
   const allbrand: Brand[] | undefined = await getAllBrands();
   return (
@@ -48,7 +69,7 @@ export default async function page() {
                 </div>
               </div>
 
-              <div className="flex flex-col items-center justify-center w-full pb-2 min-h-[44px]">
+              <div className="flex flex-col items-center justify-center w-full pb-2 min-h-11">
                 <span className="text-lg font-bold text-gray-700 transition-colors duration-300 group-hover:text-[#8027FE]">
                   {e?.name}
                 </span>

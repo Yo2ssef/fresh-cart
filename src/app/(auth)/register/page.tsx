@@ -2,15 +2,39 @@ import Image from "next/image";
 import FormRegister from "./FormRegister";
 import { Star, Truck, ShieldCheck } from "lucide-react";
 import author from "@images/review-author.webp";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Register",
+  description: "Join Fresh Cart today to enjoy premium quality groceries, fast delivery, and secure shopping.",
+    openGraph: {
+    title: "Register | Fresh Cart",
+    description: "Create an account and start shopping for the best quality products.",
+    url: "https://freshcart-youssef.vercel.app/register",
+    images: [
+      {
+        url: "/image/registerPhoto.webp", 
+        width: 1200,
+        height: 630,
+        alt: "Join Fresh Cart",
+      },
+    ],
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 export default function page() {
+
   return (
     <section className="container mx-auto py-14 px-4 sm:px-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 max-w-6xl mx-auto">
         <section className="flex flex-col justify-center space-y-10 lg:pe-10">
           <div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-4 tracking-tight">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-4 tracking-tight">
               Welcome to <span className="text-emerald-600">FreshCart</span>
-            </h2>
+            </h1>
             <p className="text-slate-600 text-lg leading-relaxed max-w-md">
               Join thousands of happy customers who enjoy fresh groceries
               delivered right to their doorstep.

@@ -1,9 +1,28 @@
 import Image from "next/image";
 import FormLogin from "./FormLogin";
 import { Truck, ShieldCheck, Clock10 } from "lucide-react";
-
+import type { Metadata } from "next";
 import loginPhoto from "@images/loginPhoto.png";
+export const metadata: Metadata = {
+  title: "Login",
+  description:
+    "Login to your Fresh Cart account to start shopping for fresh groceries and daily needs.",
+  openGraph: {
+    title: "Login | Fresh Cart",
+    description:
+      "Welcome back! Login to access your fresh deals and secure shopping experience.",
+    url: "https://freshcart-youssef.vercel.app/login",
 
+    images: [
+      {
+        url: "/image/loginPhoto.png",
+        width: 1200,
+        height: 630,
+        alt: "Fresh Cart Login",
+      },
+    ],
+  },
+};
 export default function page() {
   return (
     <section className="container mx-auto py-10 px-4 sm:px-6">
@@ -55,9 +74,9 @@ export default function page() {
         </section>
 
         <section className="bg-white rounded-2xl text-center shadow-lg border border-gray-100 px-6 py-10 flex flex-col justify-center min-h-125">
-          <h2 className="text-4xl font-semibold text-gray-800">
+          <h1 className="text-4xl font-semibold text-gray-800">
             <span className="text-emerald-600">Fresh</span>Cart
-          </h2>
+          </h1>
           <h3 className="text-3xl font-bold text-gray-800 mt-6 mb-3">
             Welcome Back!
           </h3>

@@ -1,8 +1,36 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { getBrandProducts } from "../brandsproduct.services";
-import { BrandData } from "../brandsproduct.interface";
 import Image from "next/image";
 import { Filter, Tag, X } from "lucide-react";
+import { getBrandProducts } from "../brandsproduct.services";
+import { BrandData } from "../brandsproduct.interface";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ brandId: string }>;
+}): Promise<Metadata> {
+  const { brandId } = await params;
+  const brand: BrandData | undefined = await getBrandProducts(brandId);
+
+  return {
+    title: brand?.name || "Brand Products",
+    description: `Shop the latest ${brand?.name} products at Fresh Cart. Best quality and fast delivery.`,
+    openGraph: {
+      title: `${brand?.name} | Fresh Cart`,
+      description: `Explore the full collection of ${brand?.name} items.`,
+      url: `https://freshcart-youssef.vercel.app/brandsproduct/${brandId}`,
+      images: [
+        {
+          url: brand?.image || "/image/home-slider.png",
+          width: 1200,
+          height: 630,
+          alt: brand?.name,
+        },
+      ],
+    },
+  };
+}
 
 export default async function page({
   params,
@@ -32,7 +60,7 @@ export default async function page({
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner shrink-0">
               <Image
                 src={allbrand?.image || ""}
-                alt={allbrand?.name || ""}
+                alt={allbrand?.name || "brand image"}
                 width={50}
                 height={50}
                 className="rounded-md"
@@ -49,6 +77,7 @@ export default async function page({
           </div>
         </div>
       </section>
+
       <section className="container mx-auto px-4 lg:px-8 py-6">
         <section className="flex flex-wrap items-center gap-4 mt-5 mb-8">
           <div className="flex items-center gap-2">
@@ -76,9 +105,10 @@ export default async function page({
             Clear all
           </Link>
         </section>
+
         <section>
           <h3 className="text-md font-medium text-slate-700">
-            Showing  products
+            Showing all products for {allbrand?.name}
           </h3>
         </section>
       </section>

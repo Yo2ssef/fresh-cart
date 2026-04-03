@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Heart, ArrowRight, ArrowLeft } from "lucide-react";
 import { getAllWishlist } from "./wishlist.services";
@@ -14,6 +14,32 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import AddToCardFromWishList from "@/components/AddToCardFromWishList/AddToCardFromWishList";
 import RemoveFromWishList from "@/components/RemoveFromWishList/RemoveFromWishList";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Wishlist",
+  description:
+    "View and manage your favorite items saved in your Fresh Cart wishlist.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    title: "My Wishlist | Fresh Cart",
+    description: "Your personal collection of favorite products at Fresh Cart.",
+    url: "https://freshcart-youssef.vercel.app/wishlist",
+    images: [
+      {
+        url: "/image/home-slider.png",
+        width: 1200,
+        height: 630,
+        alt: "Wishlist",
+      },
+    ],
+  },
+};
+
 export default async function page() {
   const { data } = await getAllWishlist();
 
@@ -46,76 +72,86 @@ export default async function page() {
           </div>
           <div className="border-2 border-gray-200/50 rounded-2xl overflow-hidden">
             <Table>
-            <TableHeader>
-              <TableRow className="bg-gray-100 ">
-                <TableHead className="w-25 text-slate-600">Product</TableHead>
-                <TableHead className="text-slate-600">Price</TableHead>
-                <TableHead className="text-slate-600">Status</TableHead>
-                <TableHead className="text-right text-slate-600">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {data.map((e:{id: string; imageCover: string; title: string; category?: { name: string }; price: number; priceAfterDiscount?: number}) => (
-                <TableRow key={e.id}>
-                  <TableCell>
-                    <div className="flex items-center gap-4">
-                      <div className="w-20 h-20 bg-slate-50 rounded-2xl border-2 border-gray-100 p-4 flex items-center justify-center shrink-0">
-                        {/* ضف الصورة هنا */}
-                        <Image
-                          src={e.imageCover}
-                          alt={e.title || "Product"}
-                          width={80}
-                          height={80}
-                          className="w-full h-full object-contain block"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-base font-semibold text-slate-800 mb-0.5">
-                          {e.title}
-                        </span>
-                        <span className="text-sm text-slate-400 font-medium tracking-wide">
-                          {e?.category?.name}
-                        </span>
-                      </div>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-lg font-bold">
-                    <div className="flex flex-col justify-center">
-                      {e.priceAfterDiscount ? (
-                        <>
-                          <span className="font-bold text-lg text-slate-900 leading-tight">
-                            {e.priceAfterDiscount} EGP
-                          </span>
-                          <span className="line-through text-slate-400 font-medium text-sm mt-0.5">
-                            {e.price} EGP
-                          </span>
-                        </>
-                      ) : (
-                        <span className="font-bold text-lg text-slate-900">
-                          {e.price} EGP
-                        </span>
-                      )}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge
-                      variant="outline"
-                      className="bg-emerald-50 text-emerald-600 hover:bg-emerald-50 border-none font-semibold px-2.5 py-0.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 shrink-0"></span>
-                      In Stock
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex items-center justify-end gap-3">
-                      <AddToCardFromWishList idProduct={e.id} />
-                      <RemoveFromWishList idProduct={e.id} />
-                    </div>
-                  </TableCell>
+              <TableHeader>
+                <TableRow className="bg-gray-100 ">
+                  <TableHead className="w-25 text-slate-600">Product</TableHead>
+                  <TableHead className="text-slate-600">Price</TableHead>
+                  <TableHead className="text-slate-600">Status</TableHead>
+                  <TableHead className="text-right text-slate-600">
+                    Actions
+                  </TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {data.map(
+                  (e: {
+                    id: string;
+                    imageCover: string;
+                    title: string;
+                    category?: { name: string };
+                    price: number;
+                    priceAfterDiscount?: number;
+                  }) => (
+                    <TableRow key={e.id}>
+                      <TableCell>
+                        <div className="flex items-center gap-4">
+                          <div className="w-20 h-20 bg-slate-50 rounded-2xl border-2 border-gray-100 p-4 flex items-center justify-center shrink-0">
+                            <Image
+                              src={e.imageCover}
+                              alt={e.title || "Product"}
+                              width={80}
+                              height={80}
+                              className="w-full h-full object-contain block"
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-base font-semibold text-slate-800 mb-0.5">
+                              {e.title}
+                            </span>
+                            <span className="text-sm text-slate-400 font-medium tracking-wide">
+                              {e?.category?.name}
+                            </span>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-lg font-bold">
+                        <div className="flex flex-col justify-center">
+                          {e.priceAfterDiscount ? (
+                            <>
+                              <span className="font-bold text-lg text-slate-900 leading-tight">
+                                {e.priceAfterDiscount} EGP
+                              </span>
+                              <span className="line-through text-slate-400 font-medium text-sm mt-0.5">
+                                {e.price} EGP
+                              </span>
+                            </>
+                          ) : (
+                            <span className="font-bold text-lg text-slate-900">
+                              {e.price} EGP
+                            </span>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge
+                          variant="outline"
+                          className="bg-emerald-50 text-emerald-600 hover:bg-emerald-50 border-none font-semibold px-2.5 py-0.5"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 shrink-0"></span>
+                          In Stock
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end gap-3">
+                          <AddToCardFromWishList idProduct={e.id} />
+                          <RemoveFromWishList idProduct={e.id} />
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ),
+                )}
+              </TableBody>
+            </Table>
           </div>
           <Link
             href="/shop"

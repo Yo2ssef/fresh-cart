@@ -23,7 +23,7 @@ export function BreCrumProductDetil({ prop }: { prop: AllProductsData }) {
     <Breadcrumb className="mb-3 mt-1.5">
       <BreadcrumbList>
         <BreadcrumbItem>
-          <Link href="#" className="flex gap-1 ">
+          <Link href="/" className="flex gap-1 ">
             <span>
               <Home size={15} />
             </span>
@@ -34,12 +34,6 @@ export function BreCrumProductDetil({ prop }: { prop: AllProductsData }) {
         <BreadcrumbItem>
           <Link href={`/categories/${idCategory}`} className="font-semibold">
             {nameCategory}
-          </Link>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <Link href="#" className="font-semibold">
-            {subc}
           </Link>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

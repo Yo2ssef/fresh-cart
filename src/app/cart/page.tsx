@@ -1,10 +1,5 @@
-export const dynamic = 'force-dynamic';
-import { BreCrumCard } from "@/components/BreCrumCard/BreCrumCard";
-import CardCartProduct from "@/components/CardCartProduct/CardCartProduct";
-import { ProductItemData } from "./cart.types";
-import { getProductCard } from "@/components/CardProudct/AddToCard/AddToCard.Action";
-import AppBtn from "@/components/shared/AppBtn/AppBtn";
-import { Separator } from "@/components/ui/separator";
+import type { Metadata } from "next";
+import Link from "next/link";
 import {
   ShoppingCart,
   ShoppingBag,
@@ -16,19 +11,46 @@ import {
   ArrowRight,
   PackageOpenIcon,
 } from "lucide-react";
-import Link from "next/link";
+import { BreCrumCard } from "@/components/BreCrumCard/BreCrumCard";
+import CardCartProduct from "@/components/CardCartProduct/CardCartProduct";
+import { ProductItemData } from "./cart.types";
+import { getProductCard } from "@/components/CardProudct/AddToCard/AddToCard.Action";
+import AppBtn from "@/components/shared/AppBtn/AppBtn";
+import { Separator } from "@/components/ui/separator";
 import BtnDeleteAllItemsCard from "@/components/CardCartProduct/BtnDeleteAllItemsCard/BtnDeleteAllItemsCard";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Cart",
+  description:
+    "View and manage items in your Fresh Cart shopping cart. Secure and fast checkout for all your grocery needs.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    title: " Cart | Fresh Cart",
+    description:
+      "Ready to checkout? Review your items and get the best deals on fresh products.",
+    url: "https://freshcart-youssef.vercel.app/cart",
+    images: [
+      {
+        url: "/image/home-slider.png",
+        width: 1200,
+        height: 630,
+        alt: "Shopping Cart",
+      },
+    ],
+  },
+};
 
 export default async function page() {
   const {
-    // cartId,
-    data: {
-      products,
-      //  _id,
-      totalCartPrice,
-    },
+    data: { products, totalCartPrice },
     numOfCartItems,
   } = await getProductCard();
+
   return (
     <>
       {products && products.length > 0 ? (
@@ -36,12 +58,12 @@ export default async function page() {
           <div className="container mx-auto px-4 lg:px-8 ">
             <BreCrumCard />
             <section className="flex flex-col gap-2 mb-6">
-              <h2 className="flex items-center gap-2">
+              <h1 className="flex items-center gap-2">
                 <span className="text-white p-2 rounded-2xl bg-linear-to-br from-[#169F49] to-[#15843F]">
                   <ShoppingCart fill="#FFFFFF" size={35} />
                 </span>
                 <span className="text-3xl font-bold">Shopping Cart</span>
-              </h2>
+              </h1>
               <p className="m-0 text-gray-700 font-semibold">
                 You have{" "}
                 <span className="text-green-600">{numOfCartItems} items</span>{" "}
@@ -105,10 +127,6 @@ export default async function page() {
                           {totalCartPrice} EGP
                         </span>
                       </div>
-                      {/* <div className="flex justify-between items-center">
-                      <span>Shipping</span>
-                      <span className="text-green-600 font-bold">FREE</span>
-                    </div> */}
                     </div>
 
                     <Separator className="border-t border-dashed border-gray-200" />
@@ -174,9 +192,9 @@ export default async function page() {
               <div className="w-35 h-35 bg-gray-500/7 rounded-full flex items-center justify-center mb-6">
                 <PackageOpenIcon size={70} className="text-gray-500/95 " />
               </div>
-              <h2 className="text-2xl font-bold text-[#0f172a] mb-3">
+              <h1 className="text-2xl font-bold text-[#0f172a] mb-3">
                 Your cart is empty
-              </h2>
+              </h1>
               <p className="text-gray-500 text-center font-medium max-w-sm mb-8 leading-relaxed">
                 Looks like you haven&apos;t added anything to your cart yet.
                 Start exploring our products!
