@@ -1,5 +1,4 @@
 import { AllProductsData } from "@/app/mainPage.interface";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardAction,
@@ -37,7 +36,7 @@ export default async function CardProduct({ prop }: { prop: AllProductsData }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             src={imageCover}
             alt={title}
-            className="relative rounded-t-md w-full object-center"
+            className="relative rounded-t-md w-full object-contain"
           />
         </div>
       </Link>
