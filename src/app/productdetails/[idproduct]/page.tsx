@@ -4,12 +4,10 @@ import { BreCrumProductDetil } from "@/components/BreCrumProductDetil/BreCrumPro
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
-import Image from "next/image";
 import {
   Check,
   LucidePackage2,
   RotateCcw,
-  Share2,
   ShieldHalf,
   Star,
   Truck,
@@ -21,7 +19,7 @@ import { AllProductsData } from "@/app/mainPage.interface";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import WishListProductDetails from "@/components/WishListProductDetails/WishListProductDetails";
 import { getAllWishlist } from "@/app/wishlist/wishlist.services";
-import { getProductCard } from "@/components/CardProudct/AddToCard/AddToCard.Action";
+import ProductImageGallery from "@/components/ProductImageGallery/ProductImageGallery";
 
 export async function generateMetadata({
   params,
@@ -86,35 +84,7 @@ export default async function page({
           <BreCrumProductDetil prop={productDetails} />
           <div className="grid grid-cols-12 gap-5">
             <div className="col-span-12 lg:col-span-3 rounded-2xl shadow p-4 flex flex-col gap-4 lg:sticky lg:top-24 h-fit">
-              <div className="bg-white rounded-2xl p-4 flex justify-center items-center w-full aspect-square relative">
-                <Image
-                  src={imageCover}
-                  alt={title || "Product cover"}
-                  loading="eager"
-                  fill
-                  className="object-contain p-2"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                {images.map((e, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className="relative min-w-20 w-20 h-20 bg-white border border-gray-100 rounded-lg overflow-hidden shrink-0 cursor-pointer"
-                    >
-                      <Image
-                        loading="eager"
-                        src={e}
-                        alt={`${title}`}
-                        fill
-                        className="object-contain p-1 hover:scale-110 transition-transform duration-300"
-                        sizes="80px"
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+              <ProductImageGallery imageCover={imageCover} images={images} title={title} />
             </div>
             <div className="col-span-12 lg:col-span-9 rounded-2xl shadow p-5 flex flex-col gap-4.5">
               <div className="flex gap-1.5">
@@ -185,7 +155,7 @@ export default async function page({
                   )}
                 </span>
               </div>
-              <div className="grid grid-cols-12 gap-2">
+              <div className="grid grid-cols-12 gap-5">
                 <BtnAddToCardProductDet idProduct={id} />
                 <Link
                   href="/cart"
