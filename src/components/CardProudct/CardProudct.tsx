@@ -46,11 +46,14 @@ export default async function CardProduct({ prop }: { prop: AllProductsData }) {
           <BtnWishList idWishList={id} dataUser={data} />
         </CardAction>
         <CardAction className="cursor-pointer">
-          <Badge className="bg-white shadow text-gray-600 hover:text-green-600 py-3 px-1">
+          <Link
+            href={`productdetails/${id}`}
+            className="shadow bg-transparent w-6 h-6 flex items-center justify-center p-1 rounded-full transition-colors text-gray-600 hover:text-green-600"
+          >
             <span>
               <Eye size={19} strokeWidth={2.5} />
             </span>
-          </Badge>
+          </Link>
         </CardAction>
       </div>
       <CardHeader>

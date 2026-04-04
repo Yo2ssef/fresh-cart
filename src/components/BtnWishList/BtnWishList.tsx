@@ -87,9 +87,9 @@ export default function BtnWishList({
       ) : (
         <Link
           href="/login"
-          className="shadow w-4 bg-transparent h-6 hover:bg-transparent transition-colorstext-gray-600 hover:text-red-600"
+          className="shadow bg-transparent w-6 h-6 flex items-center justify-center p-1 rounded-full transition-colors text-gray-600 hover:text-red-600"
         >
-          <Heart className="size-4" strokeWidth={2.5} />
+          <Heart strokeWidth={2.5} fill="transparent" />
         </Link>
       )}
     </>

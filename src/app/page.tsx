@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 import CardProduct from "@/components/CardProudct/CardProudct";
 import { getAllProducts } from "./mainPage.services";
 import HomeSlider from "@/components/HomeSlider/HomeSlider";
@@ -27,7 +27,7 @@ export default async function page() {
       <header className="bg-white">
         <HomeSlider />
       </header>
-      
+
       {/* features section */}
       <section className="bg-gray-50/70 py-7 w-full">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-5 p-3">
