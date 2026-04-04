@@ -311,7 +311,9 @@ export default function NavBtns() {
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
+          
           <Separator orientation="vertical" />
+
           <NavigationMenuItem className="border-gray-300">
             <NavigationMenuLink
               asChild

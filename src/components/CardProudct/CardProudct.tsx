@@ -43,7 +43,7 @@ export default async function CardProduct({ prop }: { prop: AllProductsData }) {
       </Link>
       <div className="flex flex-col gap-2 absolute top-3 inset-e-2">
         <CardAction className="cursor-pointer">
-          <BtnWishList idWishList={id} data={data} />
+          <BtnWishList idWishList={id} dataUser={data} />
         </CardAction>
         <CardAction className="cursor-pointer">
           <Badge className="bg-white shadow text-gray-600 hover:text-green-600 py-3 px-1">

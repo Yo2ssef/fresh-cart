@@ -1,6 +1,7 @@
 "use client";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 export default function CardDealHomePage() {
   return (
     <>
@@ -36,9 +37,9 @@ export default function CardDealHomePage() {
             </span>
           </div>
 
-          <button className="mt-4 flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-emerald-600 transition-transform hover:scale-105 active:scale-95">
+          <Link href="/shop" className="mt-4 flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-emerald-600 transition-transform hover:scale-105 active:scale-95">
             Shop Now <ArrowRight className="h-4 w-4" />
-          </button>
+          </Link>
         </div>
       </motion.div>
 
@@ -74,9 +75,9 @@ export default function CardDealHomePage() {
             </span>
           </div>
 
-          <button className="mt-4 flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-orange-500 transition-transform hover:scale-105 active:scale-95">
+          <Link href='/' className="mt-4 flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-orange-500 transition-transform hover:scale-105 active:scale-95">
             Explore Now <ArrowRight className="h-4 w-4" />
-          </button>
+          </Link>
         </div>
       </motion.div>
     </>

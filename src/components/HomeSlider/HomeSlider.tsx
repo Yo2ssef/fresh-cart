@@ -11,8 +11,8 @@ import Image from "next/image";
 import imgSlider1 from "@images/home-slider.png";
 import imgSlider2 from "@images/home-slider.png";
 import imgSlider3 from "@images/home-slider.png";
-import AppBtn from "../shared/AppBtn/AppBtn";
 import { motion } from "framer-motion";
+import Link from "next/link";
 export default function HomeSlider() {
   const listSlider = [
     {
@@ -20,8 +20,8 @@ export default function HomeSlider() {
       description: "Get 20% off your first order",
       image: imgSlider1.src,
       buttons: [
-        { label: "Shop Now", primary: true, textColor: "text-green-500" },
-        { label: "View Deals", primary: false },
+        { label: "Shop Now", primary: true, textColor: "text-green-500",link:'/shop' },
+        { label: "View Deals", primary: false,link:'/cart' },
       ],
     },
     {
@@ -29,7 +29,7 @@ export default function HomeSlider() {
       description: "Fresh from farm to your table",
       image: imgSlider2.src,
       buttons: [
-        { label: "Shop Now", primary: true, textColor: "text-blue-500" },
+        { label: "Shop Now", primary: true, textColor: "text-blue-500",link:'/cart/checkout' },
         { label: "Learn More", primary: false },
       ],
     },
@@ -38,8 +38,8 @@ export default function HomeSlider() {
       description: "Same day delivery available",
       image: imgSlider3.src,
       buttons: [
-        { label: "Order Now", primary: true, textColor: "text-purple-500" },
-        { label: "Delivery Info", primary: false },
+        { label: "Order Now", primary: true, textColor: "text-purple-500",link:'/shop' },
+        { label: "Delivery Info", primary: false ,link:'/cart/checkout'},
       ],
     },
   ];
@@ -108,16 +108,16 @@ export default function HomeSlider() {
                   className="flex items-center gap-3"
                 >
                   {e.buttons?.map((btn, i) => (
-                    <AppBtn
+                    <Link href={btn.link || '#'}
                       key={i}
-                      className={`rounded-lg px-8 py-6 text-lg font-bold transition-transform shadow-sm hover:scale-105 ${
+                      className={`rounded-lg px-8 py-3 text-lg font-bold transition-transform shadow-sm hover:scale-105 ${
                         btn.primary
                           ? `bg-white ${btn.textColor} hover:bg-gray-50`
                           : "bg-transparent border-2 border-white/90 text-white hover:bg-white/10 hover:border-white"
                       }`}
                     >
                       {btn.label}
-                    </AppBtn>
+                    </Link>
                   ))}
                 </motion.div>
               </div>

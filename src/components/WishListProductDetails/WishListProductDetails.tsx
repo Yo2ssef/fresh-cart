@@ -1,5 +1,5 @@
 "use client";
-import { Heart } from "lucide-react";
+import { Heart, Loader } from "lucide-react";
 import AppBtn from "../shared/AppBtn/AppBtn";
 import {
   addToWishList,
@@ -10,25 +10,25 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default function BtnWishList({
-  idWishList,
+export default function WishListProductDetails({
+  idProduct,
   dataUser,
 }: {
-  idWishList: string;
+  idProduct: string;
   dataUser: { id: string; [key: string]: unknown }[];
 }) {
   const [isWishList, setIsWishList] = useState(() => {
     return dataUser && Array.isArray(dataUser)
-      ? dataUser.some((e: { id: string }) => e.id === idWishList)
+      ? dataUser.some((e: { id: string }) => e.id === idProduct)
       : false;
   });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (dataUser && Array.isArray(dataUser)) {
-      setIsWishList(dataUser.some((e: { id: string }) => e.id === idWishList));
+      setIsWishList(dataUser.some((e: { id: string }) => e.id === idProduct));
     }
-  }, [dataUser, idWishList]);
+  }, [dataUser, idProduct]);
 
   async function handleToggleWishList() {
     const previousState = isWishList;
@@ -37,7 +37,7 @@ export default function BtnWishList({
 
     try {
       if (previousState) {
-        await toast.promise(removeFromWishList(idWishList), {
+        await toast.promise(removeFromWishList(idProduct), {
           pending: "Removing from WishList...",
           success: {
             render({ data: { message } }) {
@@ -47,7 +47,7 @@ export default function BtnWishList({
           error: "Sorry, something went wrong",
         });
       } else {
-        await toast.promise(addToWishList(idWishList), {
+        await toast.promise(addToWishList(idProduct), {
           pending: "Adding to WishList...",
           success: {
             render({ data: { message } }) {
@@ -66,30 +66,40 @@ export default function BtnWishList({
     }
   }
   const { data } = useSession();
+
   return (
     <>
       {data?.user ? (
         <AppBtn
+          variant="outline"
           onClick={handleToggleWishList}
           disabled={loading}
-          className={`shadow w-4 bg-transparent h-6 hover:bg-transparent transition-colors ${
-            isWishList
-              ? "text-red-600 hover:text-red-700"
-              : "text-gray-600 hover:text-red-600"
+          className={`col-span-12 flex items-center justify-center gap-2 rounded-lg py-6 border-2 text-md transition-all duration-300 ease-in-out shadow-md ${
+            loading
+              ? "border-green-500 text-green-500 bg-white shadow-green-500/30"
+              : isWishList
+                ? "border-red-200 bg-white text-red-600 hover:bg-red-100 hover:border-red-300 hover:text-red-600 shadow-red-500/30"
+                : "border-gray-200 text-gray-700 hover:bg-white bg-white hover:text-green-500 hover:border-green-500 shadow-gray-300/50 hover:shadow-green-500/30"
           }`}
         >
-          <Heart
-            className="size-4"
-            strokeWidth={2.5}
-            fill={isWishList ? "currentColor" : "transparent"}
-          />
+          {loading ? (
+            <Loader className="size-5 animate-spin" />
+          ) : (
+            <Heart
+              className="size-5"
+              strokeWidth={2.5}
+              fill={isWishList ? "currentColor" : "transparent"}
+            />
+          )}
+          {isWishList && !loading ? "In Wishlist" : "Add to Wishlist"}
         </AppBtn>
       ) : (
         <Link
           href="/login"
-          className="shadow w-4 bg-transparent h-6 hover:bg-transparent transition-colorstext-gray-600 hover:text-red-600"
+          className="col-span-12 flex items-center justify-center gap-2 rounded-lg py-4 border-2 text-md transition-all duration-300 ease-in-out shadow-md border-gray-200 text-gray-700 hover:bg-white bg-white hover:text-green-500 hover:border-green-500 shadow-gray-300/50 hover:shadow-green-500/30"
         >
-          <Heart className="size-4" strokeWidth={2.5} />
+          <Heart className="size-5" strokeWidth={2.5} />
+          Add to Wishlist
         </Link>
       )}
     </>

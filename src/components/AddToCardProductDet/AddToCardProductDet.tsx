@@ -55,7 +55,7 @@ export default function BtnAddToCardProductDet({
         <AppBtn
           onClick={addToCard}
           disabled={getLoading}
-          className="bg-green-600 hover:bg-green-800 col-span-12 lg:col-span-6 rounded-xl h-14 text-lg"
+          className="bg-green-600 hover:bg-green-800 shadow-lg shadow-green-600/50 col-span-12 lg:col-span-6 rounded-xl h-14 text-lg"
         >
           {getLoading ? (
             <LoaderIcon
@@ -73,7 +73,7 @@ export default function BtnAddToCardProductDet({
       ) : (
         <Link
           href="/login"
-           className="bg-green-600 flex justify-center items-center text-white hover:bg-green-800 col-span-12 lg:col-span-6 rounded-xl h-14 text-lg"
+           className="bg-green-600 flex justify-center items-center text-white hover:bg-green-800 shadow-lg shadow-green-600/50 col-span-12 lg:col-span-6 rounded-xl h-14 text-lg"
         >
           <ShoppingCart className="size-6" />
               Add to Cart

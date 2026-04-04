@@ -76,9 +76,10 @@ export default function Loading() {
               </div>
 
               {/* Quantity */}
-              <div className="flex flex-col gap-2 mt-2">
-                <Skeleton className="h-5 w-20" />
-                <Skeleton className="h-4 w-12" />
+              <div>
+                <h4 className="text-gray-700 font-bold flex items-center gap-2">
+                  Quantity <Skeleton className="h-8 w-10 inline-block" /> Available
+                </h4>
               </div>
 
               {/* Total Price Box */}
@@ -95,8 +96,7 @@ export default function Loading() {
 
               {/* Action Buttons 2 */}
               <div className="grid grid-cols-12 gap-2">
-                <Skeleton className="col-span-11 h-[72px] rounded-lg" />
-                <Skeleton className="col-span-1 h-[72px] rounded-lg" />
+                <Skeleton className="col-span-12 h-[76px] rounded-lg" />
               </div>
 
               <Separator />

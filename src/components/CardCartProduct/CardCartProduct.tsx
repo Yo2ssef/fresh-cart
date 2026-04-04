@@ -62,7 +62,6 @@ export default function CardCartProduct({ products }: ProductItemProps) {
           <div className="flex items-center gap-1 p-1 bg-gray-200/20 border border-gray-200 rounded-xl shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
             <BtnCardMoreOrless infoDet={{ id, count }} />
           </div>
-
           <div className="flex items-center gap-5 sm:gap-6 mt-4 sm:mt-0 ml-auto sm:ml-0">
             <div className="text-right flex flex-col justify-end">
               <span className="text-xs text-gray-400 font-medium leading-none mb-1.5">
