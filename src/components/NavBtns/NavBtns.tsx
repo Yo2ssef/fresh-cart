@@ -50,27 +50,20 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import { cartCreatedContxt } from "@/Context/ContextCartProvider/ContextCartProvider";
-import { getProductCard } from "../CardProudct/AddToCard/AddToCard.Action";
 
 import { useSession, signOut } from "next-auth/react";
 import AppBtn from "../shared/AppBtn/AppBtn";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
+import { wishListCreatedContxt } from "@/Context/ContextWishListProvider/ContextWishListProvider";
 
 export default function NavBtns() {
   const { data } = useSession();
   async function handleLogOut() {
     await signOut({ callbackUrl: "/" });
   }
-  const { userCartCount, setUserCartCount } =
-    React.useContext(cartCreatedContxt);
-
-  React.useEffect(() => {
-    getProductCard().then(({ numOfCartItems }) => {
-      setUserCartCount(numOfCartItems);
-    });
-  }, [setUserCartCount]);
-
+  const { userCartCount } = React.useContext(cartCreatedContxt);
+  const { userWishListCount } = React.useContext(wishListCreatedContxt);
   return (
     <>
       {/* Search Input */}
@@ -104,6 +97,11 @@ export default function NavBtns() {
               className="relative inline-flex items-center justify-center"
             >
               <Heart className="size-6" strokeWidth={2.5} />
+              {userWishListCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[11px] font-bold text-white">
+                  {userWishListCount}
+                </span>
+              )}
             </Link>
           </NavigationMenuLink>
           <NavigationMenuLink
@@ -311,7 +309,7 @@ export default function NavBtns() {
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
-          
+
           <Separator orientation="vertical" />
 
           <NavigationMenuItem className="border-gray-300">
@@ -319,8 +317,16 @@ export default function NavBtns() {
               asChild
               className={`${navigationMenuTriggerStyle()}  text-gray-500 hover:text-green-600 hover:bg-gray-100 py-5 px-2`}
             >
-              <Link href="/wishlist">
+              <Link
+                href="/wishlist"
+                className="relative inline-flex items-center justify-center"
+              >
                 <Heart className="size-6" strokeWidth={3} />
+                {userWishListCount > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[11px] font-bold text-white">
+                    {userWishListCount}
+                  </span>
+                )}
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
@@ -373,7 +379,6 @@ export default function NavBtns() {
             </NavigationMenuItem>
           )}
         </NavigationMenuList>
-
       </NavigationMenuList>
     </>
   );

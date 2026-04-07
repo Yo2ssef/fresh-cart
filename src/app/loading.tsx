@@ -36,7 +36,7 @@ export default function Loading() {
         {/* Deals Section */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-5 p-7 overflow-hidden mt-6">
           {Array.from({ length: 2 }).map((_, i) => (
-            <Skeleton key={i} className="h-64 lg:h-[340px] w-full rounded-3xl" />
+            <Skeleton key={i} className="h-64 lg:h-85 w-full rounded-3xl" />
           ))}
         </section>
 
@@ -67,7 +67,7 @@ export default function Loading() {
 
       {/* Newsletter App Section */}
       <section className="container mx-auto px-4 lg:px-8 py-10 mb-12">
-        <Skeleton className="w-full h-[600px] lg:h-[420px] rounded-[2.5rem]" />
+        <Skeleton className="w-full h-150 lg:h-105 rounded-[2.5rem]" />
       </section>
     </div>
   );

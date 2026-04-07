@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar/Navbar";
 import { Bounce, ToastContainer } from "react-toastify";
 import Footer from "@/components/Footer/Footer";
 import Provider from "@/components/Provider/Provider";
-
 const inter = Exo({ subsets: ["latin"], variable: "--font-exo" });
 
 export const metadata: Metadata = {

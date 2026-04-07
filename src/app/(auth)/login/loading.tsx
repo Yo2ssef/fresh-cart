@@ -7,7 +7,7 @@ export default function Loading() {
         {/* Left Side: Marketing Info Skeleton */}
         <section className="flex flex-col items-center justify-center space-y-8 lg:pe-10">
           <div className="w-full bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
-            <Skeleton className="w-full h-64 md:h-[350px] rounded-none bg-gray-100" />
+            <Skeleton className="w-full h-64 md:h-87.5 rounded-none bg-gray-100" />
           </div>
 
           <div className="text-center space-y-4 w-full flex flex-col items-center">
@@ -28,7 +28,7 @@ export default function Loading() {
         </section>
 
         {/* Right Side: Login Form Box Skeleton */}
-        <section className="bg-white rounded-2xl shadow-lg border border-gray-100 px-6 py-10 flex flex-col justify-center min-h-[500px]">
+        <section className="bg-white rounded-2xl shadow-lg border border-gray-100 px-6 py-10 flex flex-col justify-center min-h-125">
           <div className="flex justify-center">
             <Skeleton className="h-10 w-48" />
           </div>

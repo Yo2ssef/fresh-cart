@@ -36,8 +36,8 @@ export default function Loading() {
             <div className="col-span-12 lg:col-span-9 rounded-2xl shadow p-5 flex flex-col gap-4.5 bg-white">
               {/* Category & Brand Badges */}
               <div className="flex gap-1.5">
-                <Skeleton className="h-[44px] w-24 rounded-full" />
-                <Skeleton className="h-[44px] w-20 rounded-full" />
+                <Skeleton className="h-11 w-24 rounded-full" />
+                <Skeleton className="h-11 w-20 rounded-full" />
               </div>
 
               {/* Title */}
@@ -47,7 +47,7 @@ export default function Loading() {
               <div className="flex items-center gap-1.5">
                 <div className="flex items-center gap-1">
                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Skeleton key={i} className="h-[17px] w-[17px] rounded-full" />
+                      <Skeleton key={i} className="h-4.25 w-4.25 rounded-full" />
                    ))}
                 </div>
                 <div className="flex gap-0.5 items-center text-gray-600">
@@ -62,8 +62,8 @@ export default function Loading() {
               </div>
 
               {/* In Stock Badge */}
-              <div className="w-[110px]">
-                 <Skeleton className="h-[44px] w-full rounded-full" />
+              <div className="w-27.5">
+                 <Skeleton className="h-11 w-full rounded-full" />
               </div>
 
               <Separator />
@@ -96,7 +96,7 @@ export default function Loading() {
 
               {/* Action Buttons 2 */}
               <div className="grid grid-cols-12 gap-2">
-                <Skeleton className="col-span-12 h-[76px] rounded-lg" />
+                <Skeleton className="col-span-12 h-19 rounded-lg" />
               </div>
 
               <Separator />
@@ -105,7 +105,7 @@ export default function Loading() {
               <div className="flex flex-wrap lg:grid lg:grid-cols-12 gap-4 justify-center">
                 {Array.from({ length: 3 }).map((_, i) => (
                   <div key={i} className="w-[calc(50%-0.5rem)] lg:w-auto lg:col-span-4 flex flex-col items-center text-center lg:flex-row lg:items-center lg:text-left gap-2 mx-auto lg:mx-0">
-                    <Skeleton className="w-[52px] h-[52px] rounded-lg shrink-0" />
+                    <Skeleton className="w-13 h-13 rounded-lg shrink-0" />
                     <div className="flex flex-col gap-1.5 w-full items-center lg:items-start">
                       <Skeleton className="h-4 w-24" />
                       <Skeleton className="h-3 w-16" />

@@ -6,9 +6,10 @@ import {
   removeFromWishList,
 } from "@/app/wishlist/wishlist.services";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { wishListCreatedContxt } from "@/Context/ContextWishListProvider/ContextWishListProvider";
 
 export default function BtnWishList({
   idWishList,
@@ -29,42 +30,47 @@ export default function BtnWishList({
       setIsWishList(dataUser.some((e: { id: string }) => e.id === idWishList));
     }
   }, [dataUser, idWishList]);
+  const {setUserWishListCount,userWishListCount} = React.useContext(wishListCreatedContxt);
+async function handleToggleWishList() {
+  const previousState = isWishList;
+  setIsWishList(!previousState);
+  setLoading(true);
 
-  async function handleToggleWishList() {
-    const previousState = isWishList;
-    setIsWishList(!previousState);
-    setLoading(true);
+  try {
+    if (previousState) {
+      await toast.promise(removeFromWishList(idWishList), {
+        pending: "Removing from WishList...",
+        success: {
+          render({ data }) {
+            return data?.message || "Removed successfully";
+          },
+        },
+        error: "Sorry, something went wrong",
+      });
 
-    try {
-      if (previousState) {
-        await toast.promise(removeFromWishList(idWishList), {
-          pending: "Removing from WishList...",
-          success: {
-            render({ data: { message } }) {
-              return message || "Removed successfully";
-            },
+      setUserWishListCount((prev) => prev - 1);
+    } else {
+      // إضافة إلى قائمة الأمنيات
+      await toast.promise(addToWishList(idWishList), {
+        pending: "Adding to WishList...",
+        success: {
+          render({ data }) {
+            return data?.message || "Added successfully";
           },
-          error: "Sorry, something went wrong",
-        });
-      } else {
-        await toast.promise(addToWishList(idWishList), {
-          pending: "Adding to WishList...",
-          success: {
-            render({ data: { message } }) {
-              return message || "Added successfully";
-            },
-          },
-          error: "Sorry, something went wrong",
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      setIsWishList(previousState);
-      toast.error("Sorry, something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
+        },
+        error: "Sorry, something went wrong",
+      });
+
+      setUserWishListCount((prev) => prev + 1);
     }
+  } catch (error) {
+    console.error(error);
+    setIsWishList(previousState);
+    toast.error("Sorry, something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
   }
+}
   const { data } = useSession();
   return (
     <>

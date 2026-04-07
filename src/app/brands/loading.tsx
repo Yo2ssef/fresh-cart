@@ -36,7 +36,7 @@ export default function Loading() {
               </div>
 
               {/* Brand Name Text Skeleton */}
-              <div className="flex flex-col items-center justify-center w-full pb-2 min-h-[44px]">
+              <div className="flex flex-col items-center justify-center w-full pb-2 min-h-11">
                 <Skeleton className="h-6 w-2/3 rounded-lg" />
               </div>
             </div>

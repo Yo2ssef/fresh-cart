@@ -20,7 +20,7 @@ export default function Loading() {
       <div className="border-2 border-gray-200/50 rounded-2xl overflow-hidden bg-white">
         {/* Table Header Mock */}
         <div className="bg-gray-100 flex items-center p-4 border-b border-gray-200">
-          <div className="flex-[2]">
+          <div className="flex-2">
             <Skeleton className="h-5 w-20" />
           </div>
           <div className="flex-1 hidden sm:block">
@@ -42,7 +42,7 @@ export default function Loading() {
               className="flex flex-col sm:flex-row sm:items-center p-4 border-b border-gray-100 last:border-0 gap-4 sm:gap-0"
             >
               {/* Product Info */}
-              <div className="flex-[2] flex items-center gap-4">
+              <div className="flex-2 flex items-center gap-4">
                 <Skeleton className="w-20 h-20 rounded-2xl shrink-0" />
                 <div className="flex flex-col gap-2">
                   <Skeleton className="h-5 w-32 lg:w-48" />

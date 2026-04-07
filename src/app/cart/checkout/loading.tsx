@@ -104,8 +104,8 @@ export default function Loading() {
 
               {/* Body */}
               <div className="p-6 flex flex-col gap-4">
-                 <Skeleton className="h-[84px] w-full rounded-xl" />
-                 <Skeleton className="h-[84px] w-full rounded-xl" />
+                 <Skeleton className="h-21 w-full rounded-xl" />
+                 <Skeleton className="h-21 w-full rounded-xl" />
                  <div className="bg-green-50/50 border border-green-100/60 rounded-xl p-4 flex items-center gap-3 mt-1">
                   <div className="w-8 h-8 rounded-full bg-green-100/80 flex items-center justify-center text-green-600 shrink-0">
                     <ShieldCheck className="w-4 h-4" />
@@ -139,7 +139,7 @@ export default function Loading() {
               <div className="flex flex-col gap-4">
                 {Array.from({ length: 3 }).map((_, i) => (
                    <div key={i} className="flex gap-3">
-                     <Skeleton className="h-[73px] w-[73px] rounded-xl shrink-0" />
+                     <Skeleton className="h-18.25 w-18.25 rounded-xl shrink-0" />
                      <div className="flex flex-col justify-center gap-2 flex-1">
                        <Skeleton className="h-4 w-3/4" />
                        <Skeleton className="h-3 w-1/2" />
@@ -175,7 +175,7 @@ export default function Loading() {
               </div>
 
               {/* Button */}
-              <Skeleton className="w-full h-[52px] rounded-xl mt-6" />
+              <Skeleton className="w-full h-13 rounded-xl mt-6" />
 
               {/* Features line */}
               <div className="flex items-center justify-center gap-3 mt-6 text-[11px] font-medium text-gray-500">

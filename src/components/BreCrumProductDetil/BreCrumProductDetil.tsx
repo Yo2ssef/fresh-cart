@@ -14,10 +14,10 @@ export function BreCrumProductDetil({ prop }: { prop: AllProductsData }) {
   const {
     title,
     category: { name: nameCategory, _id: idCategory },
-    subcategory,
+    // subcategory,
   } = prop;
 
-  const subc = subcategory[0].name;
+  // const subc = subcategory[0].name;
 
   return (
     <Breadcrumb className="mb-3 mt-1.5">

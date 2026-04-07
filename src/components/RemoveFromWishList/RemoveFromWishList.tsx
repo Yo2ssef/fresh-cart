@@ -2,7 +2,7 @@
 import { toast } from "react-toastify";
 import AppBtn from "../shared/AppBtn/AppBtn";
 import { HeartCrack, LoaderIcon, Trash2 } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,20 +16,23 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { removeFromWishList } from "@/app/wishlist/wishlist.services";
+import { wishListCreatedContxt } from "@/Context/ContextWishListProvider/ContextWishListProvider";
 export default function RemoveFromWishList({
   idProduct,
 }: {
   idProduct: string;
 }) {
   const [loading, setLoading] = useState(false);
+  const {setUserWishListCount,userWishListCount} = React.useContext(wishListCreatedContxt);
   async function handleRemoveFromWishList() {
     setLoading(true);
     try {
       await toast.promise(removeFromWishList(idProduct), {
         pending: "Remove From WishList...",
         success: {
-          render({ data: { message } }) {
-            return message;
+          render({ data }) {
+            setUserWishListCount(userWishListCount - 1);
+            return data?.message;
           },
         },
         error: {
