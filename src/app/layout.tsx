@@ -3,7 +3,7 @@ import { Exo } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar/Navbar";
-import { Bounce, ToastContainer } from "react-toastify";
+import {  ToastContainer, Zoom } from "react-toastify";
 import Footer from "@/components/Footer/Footer";
 import Provider from "@/components/Provider/Provider";
 const inter = Exo({ subsets: ["latin"], variable: "--font-exo" });
@@ -50,7 +50,7 @@ export default function RootLayout({
           <main className="mb-5">
             <ToastContainer
               position="top-right"
-              autoClose={3000}
+              autoClose={1500}
               hideProgressBar={false}
               newestOnTop={false}
               closeOnClick={true}
@@ -59,7 +59,7 @@ export default function RootLayout({
               draggable
               pauseOnHover={false}
               theme="light"
-              transition={Bounce}
+              transition={Zoom}
               limit={3}
             />
             {children}

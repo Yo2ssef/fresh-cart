@@ -12,45 +12,26 @@ export function useRegister() {
 
   const getRegister = async (userData: userDataType) => {
     setIsLoading(true);
-    const toastRender = toast.loading("Registering your account...");
+        const toastId = toast.loading("Registering your account...");
     try {
       const response = await handleUserRegister(userData);
-
+      toast.dismiss(toastId);
       if (response === true) {
-        toast.update(toastRender, {
-          render: "Register Success...",
-          type: "success",
-          isLoading: false,
-          autoClose: 3000,
-        });
-
+        toast.success("Register Success...");
         router.push("/login");
       } else if (response === false) {
-        toast.update(toastRender, {
-          render: "Register Failed. Please try again.",
-          type: "error",
-          isLoading: false,
-          autoClose: 3000,
-        });
+        toast.error("Register Failed. Please try again.");
       } else {
-        toast.update(toastRender, {
-          render: response || "Something went wrong",
-          type: "warning",
-          isLoading: false,
-          autoClose: 3000,
-        });
+        toast.warning(response || "Something went wrong");
       }
     } catch (error) {
-      toast.update(toastRender, {
-        render: "Server Error, please try later",
-        type: "error",
-        isLoading: false,
-        autoClose: 3000,
-      });
+      toast.dismiss(toastId);
+      toast.error("Server Error, please try later");
       console.error("Registration Error:", error);
     } finally {
       setIsLoading(false);
     }
   };
+
   return { getRegister, isLoading };
 }
